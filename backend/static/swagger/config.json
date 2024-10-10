@@ -1,0 +1,236 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Whisky API",
+    "description": "API para gerenciar uma lista de whiskies",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/ping": {
+      "get": {
+        "tags": ["Utility"],
+        "summary": "Ping Pong",
+        "description": "Verifica se o servidor está rodando.",
+        "responses": {
+          "200": {
+            "description": "Retorna uma mensagem 'pong!'",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "pong!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/whiskies": {
+      "get": {
+        "tags": ["Whiskies"],
+        "summary": "Obter todos os whiskies",
+        "description": "Retorna uma lista de todos os whiskies.",
+        "responses": {
+          "200": {
+            "description": "Lista de whiskies",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "whiskies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "age": { "type": "integer" },
+                      "region": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Whiskies"],
+        "summary": "Adicionar novo whisky",
+        "description": "Adiciona um novo whisky à lista.",
+        "parameters": [
+          {
+            "name": "whisky_data",
+            "in": "body",
+            "description": "Dados do whisky",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "example": "Glenfiddich" },
+                "age": { "type": "integer", "example": 12 },
+                "region": { "type": "string", "example": "Speyside" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Whisky adicionado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "success" },
+                "message": { "type": "string", "example": "Whisky added!" },
+                "whisky": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "age": { "type": "integer" },
+                    "region": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição (dados de entrada inválidos)"
+          }
+        }
+      }
+    },
+    "/whiskies/{whisky_id}": {
+      "get": {
+        "tags": ["Whiskies"],
+        "summary": "Obter whisky por ID",
+        "description": "Retorna um whisky específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "whisky_id",
+            "in": "path",
+            "description": "ID do whisky",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados do whisky",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "success" },
+                "whisky": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "age": { "type": "integer" },
+                    "region": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Whisky não encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Whiskies"],
+        "summary": "Atualizar whisky",
+        "description": "Atualiza os dados de um whisky existente.",
+        "parameters": [
+          {
+            "name": "whisky_id",
+            "in": "path",
+            "description": "ID do whisky",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "whisky_data",
+            "in": "body",
+            "description": "Dados atualizados do whisky",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "example": "Glenfiddich" },
+                "age": { "type": "integer", "example": 15 },
+                "region": { "type": "string", "example": "Highland" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Whisky atualizado com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "success" },
+                "message": { "type": "string", "example": "Whisky updated!" },
+                "whisky": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "age": { "type": "integer" },
+                    "region": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro na requisição (dados de entrada inválidos)"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Whiskies"],
+        "summary": "Deletar whisky",
+        "description": "Remove um whisky da lista pelo seu ID.",
+        "parameters": [
+          {
+            "name": "whisky_id",
+            "in": "path",
+            "description": "ID do whisky",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Whisky removido com sucesso",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "success" },
+                "message": { "type": "string", "example": "Whisky deleted!" }
+              }
+            }
+          },
+          "404": {
+            "description": "Whisky não encontrado"
+          }
+        }
+      }
+    }
+  }
+}

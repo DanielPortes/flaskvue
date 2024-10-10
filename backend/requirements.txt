@@ -1,0 +1,12 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-CORS
+psycopg2-binary
+python-dotenv
+pytest
+testcontainers
+marshmallow
+apispec
+flask-swagger-ui
+apispec-webframeworks

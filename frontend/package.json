@@ -1,0 +1,27 @@
+{
+  "name": "flaskvue",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.23",
+    "@mdi/font": "^7.4.47",
+    "@mdi/js": "^7.4.47",
+    "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.5",
+    "vuetify": "^3.7.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "rollup": "^4.21.3",
+    "vite": "^5.3.1",
+    "vite-plugin-vuetify": "^2.0.4"
+  }
+}
