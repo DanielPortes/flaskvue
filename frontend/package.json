@@ -21,7 +21,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
     "rollup": "^4.21.3",
-    "vite": "^5.3.1",
+    "vite": "^5.4.14",
     "vite-plugin-vuetify": "^2.0.4"
   }
 }
